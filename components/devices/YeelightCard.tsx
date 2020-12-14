@@ -64,11 +64,11 @@ const YeelightCard: FC<{ yeelight: Yeelight }> = ({ yeelight }) => {
               type="color"
               className="cursor-pointer w-full h-full"
               onChange={handleChangeRGB}
-              value={RGBToHex(
-                yeelightState.rgbR,
-                yeelightState.rgbG,
-                yeelightState.rgbB
-              )}
+              //value={RGBToHex(
+              //  yeelightState.rgbR,
+              //  yeelightState.rgbG,
+              //  yeelightState.rgbB
+              //)}
             />
           </div>
         </div>
