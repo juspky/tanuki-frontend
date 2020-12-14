@@ -4,6 +4,5 @@ EXPOSE 3000
 COPY . /app
 WORKDIR /app
 RUN yarn
-RUN yarn build
 
-CMD yarn start
+CMD yarn build && yarn start
