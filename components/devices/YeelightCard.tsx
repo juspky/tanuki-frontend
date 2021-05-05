@@ -9,6 +9,7 @@ type Yeelight = {
   type: string;
   power: boolean;
   connected: boolean;
+  music: boolean;
   brightness: number;
   rgbR: number;
   rgbG: number;
@@ -46,6 +47,14 @@ const YeelightCard: FC<{ yeelight: Yeelight }> = ({ yeelight }) => {
     );
   };
 
+  const handleToggleMusicMode = async () => {
+    const newMusic = !yeelightState.music;
+    setYeelightState({ ...yeelightState, music: newMusic });
+    await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/devices/yeelight/${yeelightState.id}/musicMode?state=${newMusic}`
+    );
+  };
+
   return (
     <Card className="flex h-32">
       <div className="flex items-center border-r pr-3 mr-6 opacity-25">
@@ -73,9 +82,15 @@ const YeelightCard: FC<{ yeelight: Yeelight }> = ({ yeelight }) => {
           </div>
         </div>
         <i
+          onClick={handleToggleMusicMode}
+          className={`ri-music-line ri-6x cursor-pointer power-glow ${
+            yeelightState.music ? " active" : "opacity-30"
+          }`}
+        />
+        <i
           onClick={handleTogglePower}
           className={`ri-shut-down-line ri-6x cursor-pointer power-glow ${
-            yeelightState.power ? " active" : ""
+            yeelightState.power ? " active" : "opacity-30"
           }`}
         />
       </div>
